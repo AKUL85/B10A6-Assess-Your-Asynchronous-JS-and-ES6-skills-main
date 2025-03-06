@@ -33,6 +33,59 @@ const loadCard = async () => {
     }
 };
 
+const loadDetails=async(id)=>{
+    
+    const res=await fetch(`https://openapi.programming-hero.com/api/peddy/pet/${id}`);
+    
+    const data=await res.json();
+    console.log(data)
+    displayDetails(data.petData)
+  
+  }
+
+const displayDetails=(video)=>{
+    
+    console.log(video);
+    
+    const detailContainer=document.getElementById("modal-content");
+    
+    detailContainer.innerHTML=
+    `      
+           <a href="#"><img class="rounded-t-lg h-full w-full object-center" src="${video.image}" alt="" />
+                    </a>
+                    
+                    <div class="p-5 ">
+                        <h1 class="font-bold text-2xl">${video.pet_name}</h1>
+                        <div class="grid grid-cols-2 gap-3">
+                        <div class="flex">
+                            <img class="h-7 w-7" src="https://img.icons8.com/?size=100&id=WMFu0wNVuAX1&format=png&color=000000">
+                            <p class="font-bold">Breed: ${video.breed}</p>
+                        </div>
+                        <div class="flex">
+                            <img class="h-7 w-7" src="https://img.icons8.com/?size=100&id=uoyCtvkEyY6A&format=png&color=000000">
+                            <p class="font-bold">Birth: ${video.date_of_birth}</p>
+                        </div>
+                        <div class="flex">
+                            <img class="h-7 w-7" src="https://img.icons8.com/?size=100&id=85801&format=png&color=000000">
+                            <p class="font-bold">Price: ${video.price}</p>
+                        </div>
+                    </div>
+                    <h1 class="font-bold text-xl my-2">Details Information</h1>
+                    <p>${video.pet_details}</p>
+    `
+    
+    document.getElementById("showModal").click();
+    
+    
+    
+    }
+
+
+
+
+
+
+
 const showAllCard = (pets) => {
     const cardContainer = document.getElementById('img-container');
     cardContainer.innerHTML = ''; 
@@ -50,6 +103,7 @@ its layout. The point of using Lorem Ipsum is that it has a.</p>
     } else {
        
         for (const item of pets) {
+            
             const makeDiv = document.createElement('div');
             makeDiv.innerHTML = `
                 <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
@@ -70,6 +124,13 @@ its layout. The point of using Lorem Ipsum is that it has a.</p>
                             <img class="h-7 w-7" src="https://img.icons8.com/?size=100&id=85801&format=png&color=000000">
                             <p class="font-bold">Price: ${item.price}</p>
                         </div>
+
+                        <div class="flex justify-between mt-1">
+                         <div> <img class="h-10 w-10" src="https://img.icons8.com/?size=100&id=88589&format=png&color=000000" ></div>
+                         <div><button id="adapt-${item.petId}" class="text-[#0E7A81] text-xl font-bold bg-white px-2 py-1 border rounded-xl">Adapt</button></div>
+                         <div><button onclick="loadDetails('${item.petId}')"  id="details-${item.petId}" class="text-[#0E7A81] text-xl font-bold bg-white px-2 py-1 border rounded-xl"">Details</button></div>
+                       </div>
+                        
                     </div>
                 </div>
             `;
@@ -77,6 +138,9 @@ its layout. The point of using Lorem Ipsum is that it has a.</p>
         }
     }
 };
+
+
+
 
 const filterPets = async (category) => {
     try {
@@ -92,3 +156,5 @@ const filterPets = async (category) => {
 
 loadCategories();
 loadCard();
+
+
