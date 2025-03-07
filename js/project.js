@@ -38,14 +38,14 @@ const loadDetails=async(id)=>{
     const res=await fetch(`https://openapi.programming-hero.com/api/peddy/pet/${id}`);
     
     const data=await res.json();
-    console.log(data)
+
     displayDetails(data.petData)
   
   }
 
 const displayDetails=(video)=>{
     
-    console.log(video);
+
     
     const detailContainer=document.getElementById("modal-content");
     
@@ -80,8 +80,26 @@ const displayDetails=(video)=>{
     
     }
 
+    
+const hiddenItem=async(id)=>{
+    const res=await fetch(`https://openapi.programming-hero.com/api/peddy/pet/${id}`);
+    
+    const data=await res.json();
 
+    const divCatch=document.getElementById(`dynamic-${id}`);
+    const selectContainer=document.getElementById('right-grid');
+    const divbana=document.createElement('div');
+    
+    divbana.innerHTML=
+    `
+    <img class="p-1 " src="${data.petData.image}">
 
+    `
+    divbana.classList.add('p-2')
+    selectContainer.appendChild(divbana);
+    divCatch.classList.add('hidden')
+
+}
 
 
 
@@ -105,6 +123,7 @@ its layout. The point of using Lorem Ipsum is that it has a.</p>
         for (const item of pets) {
             
             const makeDiv = document.createElement('div');
+            makeDiv.setAttribute("id", `dynamic-${item.petId}`);
             makeDiv.innerHTML = `
                 <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
                     <a href="#">
@@ -127,7 +146,7 @@ its layout. The point of using Lorem Ipsum is that it has a.</p>
 
                         <div class="flex justify-between mt-1">
                          <div> <img class="h-10 w-10" src="https://img.icons8.com/?size=100&id=88589&format=png&color=000000" ></div>
-                         <div><button id="adapt-${item.petId}" class="text-[#0E7A81] text-xl font-bold bg-white px-2 py-1 border rounded-xl">Adapt</button></div>
+                         <div><button onclick="hiddenItem('${item.petId}')" id="adapt-${item.petId}" class="text-[#0E7A81] text-xl font-bold bg-white px-2 py-1 border rounded-xl">Adapt</button></div>
                          <div><button onclick="loadDetails('${item.petId}')"  id="details-${item.petId}" class="text-[#0E7A81] text-xl font-bold bg-white px-2 py-1 border rounded-xl"">Details</button></div>
                        </div>
                         
