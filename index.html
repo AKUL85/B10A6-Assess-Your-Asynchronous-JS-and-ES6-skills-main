@@ -78,7 +78,9 @@
         <!-- buttoner niche -->
         <div class="flex justify-between my-6">
             <h1 class="font-bold text-xl ">Best Deal For you</h1>
-            <button class="font-bold text-2xl text-white bg-[#0E7A81] px-4 py-2 rounded-xl">Sort By Price</button>
+            <button id="sort-by-price" class=" bg-[#0E7A81] text-2xl font-bold btn px-8 py-5 hover:rounded-2xl hover:bg-gray-300" onclick="sortPetsByPrice()">
+                Sort by Price
+            </button>
         </div>
         <!-- display pets -->
         <section class="mb-6">
@@ -115,6 +117,40 @@
 
     </main>
 
+    <footer>
+        <footer class="footer sm:footer-horizontal bg-neutral text-neutral-content p-10">
+            <nav>
+              
+              <a class="link link-hover">
+                <div class="flex items-center space-x-2">
+                    <img class="w-8 h-8" src="./images/logo.webp" alt="Logo">
+                    <a class="btn btn-ghost text-2xl">Peddy</a>
+                </div>
+              </a>
+              <h1 class="">Location: av. Washington 165, NY CA 54003
+               
+               
+             </h1>
+                <h1> Phone: +31 85 964 47 25</h1>
+                <h1> Email: info@yourdomain.com</h1>
+                <h1>   Openings hours: 9.00 AM - 5.00 PM</h1>
+              
+            </nav>
+            <nav>
+              <h6 class="text-white font-bold text-2xl">Useful Links</h6>
+              <h1 class="text-xl font bold text-white">Home</h1>
+              <a href=""><h1>About Us</h1></a>
+             <a href=""><h1>Animals</h1></a> 
+              <a href=""><h1>Foundation </h1></a>
+              <a href="">Contact</a>
+            </nav>
+            <nav>
+              <h6 class="footer-title">Drop Message</h6>
+              <input class="px-5 py-3 bg-white text-black" type="text" placeholder="Write here">
+              <button class="w-full py-2 border rounded-xl bg-[#0E7A81]">Subscribe</button>
+            </nav>
+          </footer>
+    </footer>
 
     <script src="./js/demo.js"></script>
     <script src="./js/project.js"></script>
